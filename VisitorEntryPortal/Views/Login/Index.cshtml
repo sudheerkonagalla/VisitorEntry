@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "";
+}
+
+<link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+<form action="~/Login/Login" name="LoginForm" method="post">
+    <table align="center" frame="box" style="margin-top:200px;height: 300px;width: 23%;">
+        <tr>
+            <td colspan="2" align="center">
+                <h2>LogIn</h2>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <i class="fas fa-user"  aria-hidden="true"></i>
+                <label class="label col-md-2"> UserName:</label>
+            </td>
+            <td>
+                <input type="text" name="txtuname" id="txtuname" class="col-md-2" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="label col-md-2"> Password:</label>
+            </td>
+            <td>
+                <input type="password" id="txtpswd" name="txtpswd" class="col-md-2" />
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="label col-md-2"> Company:</label>
+            </td>
+            <td>
+                <select>
+                    <option value="1">Xome</option>
+                    <option value="2">MrCooper</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center" rowspan="2">
+                <input type="submit" id="btnsubmit" />
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script type="text/javascript">
+
+    function submitForm() {
+        $.ajax({
+            type: "POST",
+            url: "../Login/Login",
+            data: { Username: $('#txtuname').val(), Password: $('#txtpswd').val() },
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                alert(result.d);
+            }
+
+        });
+    }
+
+</script>
+

@@ -1,0 +1,70 @@
+﻿
+@{
+    ViewBag.Title = "_EmployeeDetails";
+}
+
+<div class="container">
+    <div class="row" style="padding: 20px 280px;">
+        <div class="col-md-12">
+            @*<input class="col-md-4" type="date" value= @DateTime.Now readonly />*@
+            <input class="col-md-6" type="text" id="empid" maxlength="10" placeholder="Employee Id" />
+            <i class="col-md-2 fa fa-search"></i>
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Name:</label>
+            <input class="col-md-5" type="text" readonly />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Contact No:</label>
+            <input class="col-md-5" type="text" readonly />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Department:</label>
+            <input class="col-md-5" type="text" readonly />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Mode Of Transport:</label>
+            <select class="col-md-5"><option value="1">Office Cab</option><option value="1">Own Transport</option></select>
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> OutTime:</label>
+            <input class="col-md-5" type="time" id="appt-time" name="appt-time" required />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Security Signature:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Remarks:</label>
+            <textarea class="col-md-5"></textarea>
+        </div>
+    </div>
+    <div class="btnAlign">
+        <div class="col-md-6">
+            <input type="button" value="Submit" class="col-md-4"/>
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .space {
+        padding: 10px;
+    }
+    .btnAlign {
+        padding: 30px 0px 0px 200px;
+    }
+</style>

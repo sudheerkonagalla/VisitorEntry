@@ -1,0 +1,104 @@
+﻿
+
+@{
+    ViewBag.Title = "_VisitorDetails";
+}
+
+<div class="container">
+
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Visitor Name:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Contact No:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Coming From:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Whom To Meet:</label>
+            <select class="col-md-5"><option value="1">Admin</option><option value="1">HR</option><option value="1">IT</option><option value="1">Engineering</option><option value="1">Operations</option></select>
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Purpose of Visit:</label>
+            <select class="col-md-5"><option value="1">Interview</option><option value="1">Official</option><option value="1">Joining</option><option value="1">Personal</option></select>
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> DLF Gate Pass No/ Govt ID No:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3">Pass No:</label>
+            <input class="col-md-5" type="text" required />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> InTime:</label>
+            <input class="col-md-5" type="time" id="appt-time" name="appt-time" required />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Out Date andTime:</label>
+            <input class="col-md-5" type="datetime" id="out-time" name="out-time" required />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Security Signature:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Visitor Signature:</label>
+            <input class="col-md-5" type="text" />
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Date:</label>
+            @Html.TextBox("DateCreated", DateTime.Today, new { @readonly = "readonly" })
+            <!-- <input class="col-md-5" type="date" />-->
+        </div>
+    </div>
+    <div class="row space">
+        <div class="col-md-8">
+            <label class="col-md-3"> Remarks:</label>
+            <textarea class="col-md-5"></textarea>
+        </div>
+    </div>
+    <div class="btnAlign">
+        <div class="col-md-6">
+            <input type="button" value="Submit" class="col-md-4" />
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+    .space {
+        padding: 10px;
+    }
+
+    .btnAlign {
+        padding: 30px 0px 0px 200px;
+    }
+</style>
+

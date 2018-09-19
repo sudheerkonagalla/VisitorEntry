@@ -194,6 +194,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Shared\_EmployeeDetails.cshtml" />
+    <Content Include="Views\Shared\_TemporaryID.cshtml" />
+    <Content Include="Views\Shared\_WeekendRegister.cshtml" />
+    <Content Include="Views\Shared\_InterviewCandidate.cshtml" />
+    <Content Include="Views\Shared\_Vendor.cshtml" />
+    <Content Include="Views\Shared\_Visitor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

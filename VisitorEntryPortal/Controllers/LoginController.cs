@@ -28,7 +28,7 @@ namespace VisitorEntryPortal.Controllers
             {
                 Session["IsAuthenticated"] = 1;
                 Session["UserName"] = username;
-                return View("~/Views/Home/index.cshtml");
+                return View("~/Views/Home/Home.cshtml");
             }
             else
             {

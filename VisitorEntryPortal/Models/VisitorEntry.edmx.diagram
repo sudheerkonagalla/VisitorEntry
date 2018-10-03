@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0861168214484577a0960d0737ee39bb" Name="Diagram1">
+        <EntityTypeShape EntityType="VisitorEntryModel.comment" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.company" Width="1.5" PointX="9.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.employee" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.employeeservice" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.latelogout" Width="1.5" PointX="7.5" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.lookup" Width="1.5" PointX="11" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.lookupgroup" Width="1.5" PointX="8.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.user" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.userlogin" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VisitorEntryModel.visitorservice" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="VisitorEntryModel.employeeservice_remarkid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.visitorservice_remarkid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.employee_userid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.employeeservice_employeeid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.latelogout_empserviceid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.lookup_lookupgroupid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.userlogin_userid_fkey" ManuallyRouted="false" />
+        <AssociationConnector Association="VisitorEntryModel.visitorservice_userid_fkey" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

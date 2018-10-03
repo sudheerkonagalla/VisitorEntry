@@ -1,0 +1,789 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VisitorEntryModel.Store" Provider="Npgsql" ProviderManifestToken="10.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="description" Type="varchar" MaxLength="8000" Nullable="false" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="logo" Type="varchar" MaxLength="8000" />
+          <Property Name="isactive" Type="bool" Nullable="false" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" Nullable="false" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="companyid" Type="int2" Nullable="false" />
+          <Property Name="departmentid" Type="int2" />
+          <Property Name="managerempid" Type="int4" />
+          <Property Name="isactive" Type="bool" Nullable="false" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="employeeservice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="employeeid" Type="int4" />
+          <Property Name="serviceid" Type="int2" Nullable="false" />
+          <Property Name="intime" Type="timestamp" />
+          <Property Name="outtime" Type="timestamp" />
+          <Property Name="tempbadgeno" Type="int8" />
+          <Property Name="remarkid" Type="int4" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="latelogout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="empserviceid" Type="int4" />
+          <Property Name="modeoftransport" Type="int4" />
+          <Property Name="withwhom" Type="varchar" MaxLength="250" />
+          <Property Name="vehiclenumber" Type="varchar" MaxLength="50" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="lookup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lookupgroupid" Type="int4" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="isactive" Type="bool" Nullable="false" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="lookupgroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="code" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="isactive" Type="bool" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="lastname" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="355" Nullable="false" />
+          <Property Name="address1" Type="varchar" MaxLength="500" />
+          <Property Name="address2" Type="varchar" MaxLength="500" />
+          <Property Name="pincode" Type="int4" />
+          <Property Name="contactnumber" Type="int8" Nullable="false" />
+          <Property Name="typeid" Type="int2" Nullable="false" />
+          <Property Name="photo" Type="varchar" MaxLength="8000" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="userlogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="username" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="2000" Nullable="false" />
+          <Property Name="companyid" Type="int4" />
+          <Property Name="isactive" Type="bool" Nullable="false" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <EntityType Name="visitorservice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int4" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int4" />
+          <Property Name="purposeofvisitid" Type="int2" Nullable="false" />
+          <Property Name="intime" Type="timestamp" Nullable="false" />
+          <Property Name="outtime" Type="timestamp" Nullable="false" />
+          <Property Name="whomtomeet" Type="varchar" MaxLength="500" />
+          <Property Name="companyid" Type="int4" />
+          <Property Name="remarkid" Type="int4" />
+          <Property Name="created_on" Type="timestamp" Nullable="false" />
+          <Property Name="modified_on" Type="timestamp" />
+          <Property Name="created_by" Type="int8" />
+          <Property Name="modified_by" Type="int8" />
+        </EntityType>
+        <Association Name="employee_userid_fkey">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeservice_employeeid_fkey">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="employeeservice" Type="Self.employeeservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employeeservice">
+              <PropertyRef Name="employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeservice_remarkid_fkey">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1" />
+          <End Role="employeeservice" Type="Self.employeeservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employeeservice">
+              <PropertyRef Name="remarkid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="latelogout_empserviceid_fkey">
+          <End Role="employeeservice" Type="Self.employeeservice" Multiplicity="0..1" />
+          <End Role="latelogout" Type="Self.latelogout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeeservice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="latelogout">
+              <PropertyRef Name="empserviceid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="lookup_lookupgroupid_fkey">
+          <End Role="lookupgroup" Type="Self.lookupgroup" Multiplicity="0..1" />
+          <End Role="lookup" Type="Self.lookup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookupgroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="lookup">
+              <PropertyRef Name="lookupgroupid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userlogin_userid_fkey">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="userlogin" Type="Self.userlogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userlogin">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="visitorservice_remarkid_fkey">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1" />
+          <End Role="visitorservice" Type="Self.visitorservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visitorservice">
+              <PropertyRef Name="remarkid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="visitorservice_userid_fkey">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="visitorservice" Type="Self.visitorservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visitorservice">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VisitorEntryModelStoreContainer">
+          <EntitySet Name="comment" EntityType="Self.comment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employee" EntityType="Self.employee" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="employeeservice" EntityType="Self.employeeservice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="latelogout" EntityType="Self.latelogout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lookup" EntityType="Self.lookup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="lookupgroup" EntityType="Self.lookupgroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="userlogin" EntityType="Self.userlogin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="visitorservice" EntityType="Self.visitorservice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="employee_userid_fkey" Association="Self.employee_userid_fkey">
+            <End Role="user" EntitySet="user" />
+            <End Role="employee" EntitySet="employee" />
+          </AssociationSet>
+          <AssociationSet Name="employeeservice_employeeid_fkey" Association="Self.employeeservice_employeeid_fkey">
+            <End Role="employee" EntitySet="employee" />
+            <End Role="employeeservice" EntitySet="employeeservice" />
+          </AssociationSet>
+          <AssociationSet Name="employeeservice_remarkid_fkey" Association="Self.employeeservice_remarkid_fkey">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="employeeservice" EntitySet="employeeservice" />
+          </AssociationSet>
+          <AssociationSet Name="latelogout_empserviceid_fkey" Association="Self.latelogout_empserviceid_fkey">
+            <End Role="employeeservice" EntitySet="employeeservice" />
+            <End Role="latelogout" EntitySet="latelogout" />
+          </AssociationSet>
+          <AssociationSet Name="lookup_lookupgroupid_fkey" Association="Self.lookup_lookupgroupid_fkey">
+            <End Role="lookupgroup" EntitySet="lookupgroup" />
+            <End Role="lookup" EntitySet="lookup" />
+          </AssociationSet>
+          <AssociationSet Name="userlogin_userid_fkey" Association="Self.userlogin_userid_fkey">
+            <End Role="user" EntitySet="user" />
+            <End Role="userlogin" EntitySet="userlogin" />
+          </AssociationSet>
+          <AssociationSet Name="visitorservice_remarkid_fkey" Association="Self.visitorservice_remarkid_fkey">
+            <End Role="comment" EntitySet="comment" />
+            <End Role="visitorservice" EntitySet="visitorservice" />
+          </AssociationSet>
+          <AssociationSet Name="visitorservice_userid_fkey" Association="Self.visitorservice_userid_fkey">
+            <End Role="user" EntitySet="user" />
+            <End Role="visitorservice" EntitySet="visitorservice" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VisitorEntryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="comment">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="description" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="employeeservices" Relationship="Self.employeeservice_remarkid_fkey" FromRole="comment" ToRole="employeeservice" />
+          <NavigationProperty Name="visitorservices" Relationship="Self.visitorservice_remarkid_fkey" FromRole="comment" ToRole="visitorservice" />
+        </EntityType>
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="logo" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="companyid" Type="Int16" Nullable="false" />
+          <Property Name="departmentid" Type="Int16" />
+          <Property Name="managerempid" Type="Int32" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="user" Relationship="Self.employee_userid_fkey" FromRole="employee" ToRole="user" />
+          <NavigationProperty Name="employeeservices" Relationship="Self.employeeservice_employeeid_fkey" FromRole="employee" ToRole="employeeservice" />
+        </EntityType>
+        <EntityType Name="employeeservice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="employeeid" Type="Int32" />
+          <Property Name="serviceid" Type="Int16" Nullable="false" />
+          <Property Name="intime" Type="DateTime" Precision="6" />
+          <Property Name="outtime" Type="DateTime" Precision="6" />
+          <Property Name="tempbadgeno" Type="Int64" />
+          <Property Name="remarkid" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="comment" Relationship="Self.employeeservice_remarkid_fkey" FromRole="employeeservice" ToRole="comment" />
+          <NavigationProperty Name="employee" Relationship="Self.employeeservice_employeeid_fkey" FromRole="employeeservice" ToRole="employee" />
+          <NavigationProperty Name="latelogouts" Relationship="Self.latelogout_empserviceid_fkey" FromRole="employeeservice" ToRole="latelogout" />
+        </EntityType>
+        <EntityType Name="latelogout">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="empserviceid" Type="Int32" />
+          <Property Name="modeoftransport" Type="Int32" />
+          <Property Name="withwhom" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="vehiclenumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="employeeservice" Relationship="Self.latelogout_empserviceid_fkey" FromRole="latelogout" ToRole="employeeservice" />
+        </EntityType>
+        <EntityType Name="lookup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lookupgroupid" Type="Int32" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="lookupgroup" Relationship="Self.lookup_lookupgroupid_fkey" FromRole="lookup" ToRole="lookupgroup" />
+        </EntityType>
+        <EntityType Name="lookupgroup">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="lookups" Relationship="Self.lookup_lookupgroupid_fkey" FromRole="lookupgroup" ToRole="lookup" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="lastname" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="355" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="address2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="pincode" Type="Int32" />
+          <Property Name="contactnumber" Type="Int64" Nullable="false" />
+          <Property Name="typeid" Type="Int16" Nullable="false" />
+          <Property Name="photo" Type="String" MaxLength="8000" FixedLength="false" Unicode="true" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="employees" Relationship="Self.employee_userid_fkey" FromRole="user" ToRole="employee" />
+          <NavigationProperty Name="userlogins" Relationship="Self.userlogin_userid_fkey" FromRole="user" ToRole="userlogin" />
+          <NavigationProperty Name="visitorservices" Relationship="Self.visitorservice_userid_fkey" FromRole="user" ToRole="visitorservice" />
+        </EntityType>
+        <EntityType Name="userlogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="companyid" Type="Int32" />
+          <Property Name="isactive" Type="Boolean" Nullable="false" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="user" Relationship="Self.userlogin_userid_fkey" FromRole="userlogin" ToRole="user" />
+        </EntityType>
+        <EntityType Name="visitorservice">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="purposeofvisitid" Type="Int16" Nullable="false" />
+          <Property Name="intime" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="outtime" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="whomtomeet" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="companyid" Type="Int32" />
+          <Property Name="remarkid" Type="Int32" />
+          <Property Name="created_on" Type="DateTime" Precision="6" Nullable="false" />
+          <Property Name="modified_on" Type="DateTime" Precision="6" />
+          <Property Name="created_by" Type="Int64" />
+          <Property Name="modified_by" Type="Int64" />
+          <NavigationProperty Name="comment" Relationship="Self.visitorservice_remarkid_fkey" FromRole="visitorservice" ToRole="comment" />
+          <NavigationProperty Name="user" Relationship="Self.visitorservice_userid_fkey" FromRole="visitorservice" ToRole="user" />
+        </EntityType>
+        <Association Name="employeeservice_remarkid_fkey">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1" />
+          <End Role="employeeservice" Type="Self.employeeservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employeeservice">
+              <PropertyRef Name="remarkid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="visitorservice_remarkid_fkey">
+          <End Role="comment" Type="Self.comment" Multiplicity="0..1" />
+          <End Role="visitorservice" Type="Self.visitorservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="comment">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visitorservice">
+              <PropertyRef Name="remarkid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employee_userid_fkey">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="employee" Type="Self.employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employee">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="employeeservice_employeeid_fkey">
+          <End Role="employee" Type="Self.employee" Multiplicity="0..1" />
+          <End Role="employeeservice" Type="Self.employeeservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employee">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="employeeservice">
+              <PropertyRef Name="employeeid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="latelogout_empserviceid_fkey">
+          <End Role="employeeservice" Type="Self.employeeservice" Multiplicity="0..1" />
+          <End Role="latelogout" Type="Self.latelogout" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="employeeservice">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="latelogout">
+              <PropertyRef Name="empserviceid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="lookup_lookupgroupid_fkey">
+          <End Role="lookupgroup" Type="Self.lookupgroup" Multiplicity="0..1" />
+          <End Role="lookup" Type="Self.lookup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lookupgroup">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="lookup">
+              <PropertyRef Name="lookupgroupid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="userlogin_userid_fkey">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="userlogin" Type="Self.userlogin" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="userlogin">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="visitorservice_userid_fkey">
+          <End Role="user" Type="Self.user" Multiplicity="0..1" />
+          <End Role="visitorservice" Type="Self.visitorservice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="visitorservice">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="comments" EntityType="Self.comment" />
+          <EntitySet Name="companies" EntityType="Self.company" />
+          <EntitySet Name="employees" EntityType="Self.employee" />
+          <EntitySet Name="employeeservices" EntityType="Self.employeeservice" />
+          <EntitySet Name="latelogouts" EntityType="Self.latelogout" />
+          <EntitySet Name="lookups" EntityType="Self.lookup" />
+          <EntitySet Name="lookupgroups" EntityType="Self.lookupgroup" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <EntitySet Name="userlogins" EntityType="Self.userlogin" />
+          <EntitySet Name="visitorservices" EntityType="Self.visitorservice" />
+          <AssociationSet Name="employeeservice_remarkid_fkey" Association="Self.employeeservice_remarkid_fkey">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="employeeservice" EntitySet="employeeservices" />
+          </AssociationSet>
+          <AssociationSet Name="visitorservice_remarkid_fkey" Association="Self.visitorservice_remarkid_fkey">
+            <End Role="comment" EntitySet="comments" />
+            <End Role="visitorservice" EntitySet="visitorservices" />
+          </AssociationSet>
+          <AssociationSet Name="employee_userid_fkey" Association="Self.employee_userid_fkey">
+            <End Role="user" EntitySet="users" />
+            <End Role="employee" EntitySet="employees" />
+          </AssociationSet>
+          <AssociationSet Name="employeeservice_employeeid_fkey" Association="Self.employeeservice_employeeid_fkey">
+            <End Role="employee" EntitySet="employees" />
+            <End Role="employeeservice" EntitySet="employeeservices" />
+          </AssociationSet>
+          <AssociationSet Name="latelogout_empserviceid_fkey" Association="Self.latelogout_empserviceid_fkey">
+            <End Role="employeeservice" EntitySet="employeeservices" />
+            <End Role="latelogout" EntitySet="latelogouts" />
+          </AssociationSet>
+          <AssociationSet Name="lookup_lookupgroupid_fkey" Association="Self.lookup_lookupgroupid_fkey">
+            <End Role="lookupgroup" EntitySet="lookupgroups" />
+            <End Role="lookup" EntitySet="lookups" />
+          </AssociationSet>
+          <AssociationSet Name="userlogin_userid_fkey" Association="Self.userlogin_userid_fkey">
+            <End Role="user" EntitySet="users" />
+            <End Role="userlogin" EntitySet="userlogins" />
+          </AssociationSet>
+          <AssociationSet Name="visitorservice_userid_fkey" Association="Self.visitorservice_userid_fkey">
+            <End Role="user" EntitySet="users" />
+            <End Role="visitorservice" EntitySet="visitorservices" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VisitorEntryModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="comments">
+            <EntityTypeMapping TypeName="VisitorEntryModel.comment">
+              <MappingFragment StoreEntitySet="comment">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="VisitorEntryModel.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="logo" ColumnName="logo" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employees">
+            <EntityTypeMapping TypeName="VisitorEntryModel.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="departmentid" ColumnName="departmentid" />
+                <ScalarProperty Name="managerempid" ColumnName="managerempid" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employeeservices">
+            <EntityTypeMapping TypeName="VisitorEntryModel.employeeservice">
+              <MappingFragment StoreEntitySet="employeeservice">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="employeeid" ColumnName="employeeid" />
+                <ScalarProperty Name="serviceid" ColumnName="serviceid" />
+                <ScalarProperty Name="intime" ColumnName="intime" />
+                <ScalarProperty Name="outtime" ColumnName="outtime" />
+                <ScalarProperty Name="tempbadgeno" ColumnName="tempbadgeno" />
+                <ScalarProperty Name="remarkid" ColumnName="remarkid" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="latelogouts">
+            <EntityTypeMapping TypeName="VisitorEntryModel.latelogout">
+              <MappingFragment StoreEntitySet="latelogout">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="empserviceid" ColumnName="empserviceid" />
+                <ScalarProperty Name="modeoftransport" ColumnName="modeoftransport" />
+                <ScalarProperty Name="withwhom" ColumnName="withwhom" />
+                <ScalarProperty Name="vehiclenumber" ColumnName="vehiclenumber" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lookups">
+            <EntityTypeMapping TypeName="VisitorEntryModel.lookup">
+              <MappingFragment StoreEntitySet="lookup">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="lookupgroupid" ColumnName="lookupgroupid" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lookupgroups">
+            <EntityTypeMapping TypeName="VisitorEntryModel.lookupgroup">
+              <MappingFragment StoreEntitySet="lookupgroup">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="code" ColumnName="code" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="VisitorEntryModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="firstname" ColumnName="firstname" />
+                <ScalarProperty Name="lastname" ColumnName="lastname" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="contactnumber" ColumnName="contactnumber" />
+                <ScalarProperty Name="typeid" ColumnName="typeid" />
+                <ScalarProperty Name="photo" ColumnName="photo" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="userlogins">
+            <EntityTypeMapping TypeName="VisitorEntryModel.userlogin">
+              <MappingFragment StoreEntitySet="userlogin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="isactive" ColumnName="isactive" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="visitorservices">
+            <EntityTypeMapping TypeName="VisitorEntryModel.visitorservice">
+              <MappingFragment StoreEntitySet="visitorservice">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="purposeofvisitid" ColumnName="purposeofvisitid" />
+                <ScalarProperty Name="intime" ColumnName="intime" />
+                <ScalarProperty Name="outtime" ColumnName="outtime" />
+                <ScalarProperty Name="whomtomeet" ColumnName="whomtomeet" />
+                <ScalarProperty Name="companyid" ColumnName="companyid" />
+                <ScalarProperty Name="remarkid" ColumnName="remarkid" />
+                <ScalarProperty Name="created_on" ColumnName="created_on" />
+                <ScalarProperty Name="modified_on" ColumnName="modified_on" />
+                <ScalarProperty Name="created_by" ColumnName="created_by" />
+                <ScalarProperty Name="modified_by" ColumnName="modified_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

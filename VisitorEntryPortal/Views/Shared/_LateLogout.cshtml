@@ -8,7 +8,7 @@
         <div class="col-md-12">
             @*<input class="col-md-4" type="date" value= @DateTime.Now readonly />*@
             <input class="col-md-6" type="text" id="empid" maxlength="10" placeholder="Employee Id" />
-            <i class="col-md-2 fa fa-search"></i>
+            <i class="col-md-2 fa fa-search" onclick="PopulateEmployeDetails()"></i>
         </div>
     </div>
     <div class="row space">
@@ -81,3 +81,8 @@
         padding: 30px 0px 0px 200px;
     }
 </style>
+<script type="text/javascript">
+    function PopulateEmployeDetails() {
+        var empId = $("#empid").val();
+    }
+</script>

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace VisitorEntryPortal.Models
+namespace VisitorEntryPortal.BusinessLayer
 {
-    public class Visitor
+    public class VisitorServices
     {
+
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VisitorEntryPortal.BusinessLayer;
+using VisitorEntryPortal.Models;
 
 namespace VisitorEntryPortal.Controllers
 {
@@ -13,21 +15,20 @@ namespace VisitorEntryPortal.Controllers
         {
             return View();
         }
-
-        //public ActionResult Login(string Username, string Password)
-        //{
-
-        //    return View();
-        //}
+        
         [HttpPost]
         public ActionResult Login(FormCollection LoginForm)
         {
             var username = LoginForm["txtuname"];
             var password = LoginForm["txtpswd"];
-            if(username.Equals("admin") && password.Equals("admin"))
+            Boolean isAucthenticated = Authentication.Authenticate(username, password);
+            isAucthenticated = true;
+            if (isAucthenticated)
             {
                 Session["IsAuthenticated"] = 1;
                 Session["UserName"] = username;
+                company CompanyDetails =  Common.GetCompany(username);
+                ViewBag.CompanyName = CompanyDetails.name;
                 return View("~/Views/Home/Home.cshtml");
             }
             else
